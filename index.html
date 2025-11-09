@@ -1,34 +1,273 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>UMBC IS – Home</title>
+  <meta charset="utf-8" />
+  <title>UMBC Information Systems — Prototype</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    :root{
+      --umbc-gold:#FFC20E;
+      --umbc-black:#000000;
+      --ink:#222;
+      --muted:#666;
+      --line:#e6e6e6;
+      --bg:#fafafa;
+      --radius:22px;
+      --shadow:0 1px 0 #0000000f;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
+    .wrap{max-width:1100px;margin:auto;padding:24px}
+    /* Header */
+    header{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center;margin-bottom:18px}
+    .logo{border:1px solid var(--line);background:var(--umbc-gold);color:var(--umbc-black);border-radius:28px;padding:20px;text-align:center;font-weight:800;letter-spacing:.5px}
+    nav{display:flex;gap:14px;justify-content:flex-end;flex-wrap:wrap}
+    nav button{
+      appearance:none;cursor:pointer;
+      padding:10px 18px;border-radius:999px;border:1px solid var(--line);
+      background:#fff;color:#111;font-weight:700
+    }
+    nav button[aria-current="page"]{
+      background:var(--umbc-gold);color:var(--umbc-black);border-color:var(--umbc-gold)
+    }
+    nav button:focus{outline:3px solid #0002; outline-offset:2px}
+
+    /* Panels & layout */
+    .panel{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
+    .panel.gold{background:var(--umbc-gold);color:var(--umbc-black);font-weight:800;text-align:center}
+    .grid{display:grid;gap:22px}
+    .grid-home{grid-template-columns:1fr}
+    @media (min-width:900px){.grid-home{grid-template-columns:260px 1fr}}
+    .grid3{display:grid;gap:22px}
+    @media (min-width:900px){.grid3{grid-template-columns:1fr 1fr 1fr}}
+
+    /* Titles */
+    h1,h2{margin:10px 0 18px;letter-spacing:.5px}
+    h1{text-align:center;font-size:28px}
+    h2{text-align:center;font-size:28px}
+    .cardTitle{font-weight:800;color:#444;margin-bottom:8px}
+    .rule{height:3px;background:#eee;border-radius:2px;margin:6px 0 12px}
+
+    /* Lists */
+    ul{margin:0;padding-left:18px}
+
+    /* Contact form */
+    .label{display:inline-block;border:1px solid var(--line);border-radius:14px;background:#fff;padding:6px 10px;font-weight:800;font-size:12px;margin-bottom:8px}
+    .grid5{display:grid;gap:18px}
+    @media(min-width:900px){.grid5{grid-template-columns:repeat(5,1fr)}}
+    input,textarea{width:100%;border:1px solid var(--line);border-radius:18px;padding:14px 16px;font:inherit}
+    textarea{height:140px;resize:vertical}
+    .btn{display:inline-block;border-radius:999px;background:var(--umbc-gold);color:var(--umbc-black);padding:12px 18px;border:1px solid var(--umbc-gold);font-weight:800;text-decoration:none;cursor:pointer}
+    .success{margin-top:16px;border:1px solid #bde5bd;background:#f0fff0;border-radius:16px;padding:12px 14px;font-weight:700;color:#1f7a1f}
+
+    /* Views (tabs) */
+    .view[hidden]{display:none}
+    main{min-height:60vh}
+
+    /* Footer */
+    footer{margin-top:28px;padding:18px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
+  </style>
 </head>
 <body>
-  <header>
-    <h1>UMBC LOGO</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="about.html">About Us</a> |
-      <a href="is-program.html">IS Program</a> |
-      <a href="contact.html">Contact Us</a>
-    </nav>
-    <hr>
-  </header>
+  <div class="wrap">
+    <!-- Top bar -->
+    <header>
+      <div class="logo">UMBC LOGO</div>
+      <nav aria-label="Primary">
+        <button data-target="home"    role="tab" aria-controls="home"    aria-current="page">Home</button>
+        <button data-target="about"   role="tab" aria-controls="about">About Us</button>
+        <button data-target="program" role="tab" aria-controls="program">IS Program</button>
+        <button data-target="contact" role="tab" aria-controls="contact">Contact Us</button>
+      </nav>
+    </header>
 
-  <main>
-    <h2>WELCOME</h2>
-    <p>Welcome to UMBC’s Department of Information Systems.</p>
-    <p>
-      Explore our <a href="about.html">About</a> page to learn what the program is,
-      view the <a href="is-program.html">IS Program</a> requirements,
-      or <a href="contact.html">contact us</a>.
-    </p>
-  </main>
+    <!-- Views -->
+    <main>
+      <!-- HOME -->
+      <section id="home" class="view" role="tabpanel">
+        <div class="panel">
+          <div class="grid grid-home">
+            <aside class="panel">
+              <strong>TEXT</strong>
+              <p style="margin-top:8px">Quick links or announcements can sit here.</p>
+            </aside>
+            <section>
+              <h1>WELCOME TEXT</h1>
+              <div class="panel">
+                <p>UMBC's Information Systems (IS) blends computing, business, and data so students can design, build, and manage real information solutions. Our interdisciplinary approach, hands-on projects, and proximity to Maryland's tech hubs help you build in-demand skills for roles across IT and IS.</p>
+                <ul>
+                  <li><strong>Programs:</strong> B.S. in Information Systems, minors &amp; certificates, and accelerated BS/MS options.</li>
+                  <li><strong>Core skills:</strong> programming, databases, networks, systems analysis &amp; design, analytics, and professional writing.</li>
+                  <li><strong>Careers:</strong> systems analyst, database developer, network manager, business/health IT, and more.</li>
+                </ul>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
 
-  <footer>
-    <hr>
-    <p>&copy; UMBC Department of Information Systems</p>
-  </footer>
+      <!-- ABOUT -->
+      <section id="about" class="view" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="grid grid-home">
+            <div class="panel" style="grid-column:1/-1">
+              <h2>About Us</h2>
+              <p>We are an interdisciplinary department focused on the study and application of information systems. Students engage with faculty, research centers, and industry partners to turn ideas into solutions. Explore majors, minors, certificates, and accelerated programs to tailor IS to your goals.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROGRAM -->
+      <section id="program" class="view" role="tabpanel" hidden>
+        <div class="panel">
+          <h2>UMBC INFORMATION SYSTEMS AND TECHNOLOGY</h2>
+          <section class="grid3">
+            <article class="panel">
+              <div class="cardTitle">PROGRAM DESCRIPTION</div>
+              <div class="rule"></div>
+              <p>The B.S. in Information Systems gives you a strong technical and conceptual foundation across computing and business. You learn how information flows through organizations and how to create systems that improve decisions, processes, and experiences.</p>
+            </article>
+
+            <article class="panel">
+              <div class="cardTitle">REQUIRED COURSES</div>
+              <div class="rule"></div>
+              <ul>
+                <li>IS 300 – Management Information Systems</li>
+                <li>IS 310 – Software and Hardware Concepts</li>
+                <li>IS 410 – Introduction to Database Design</li>
+                <li>IS 420 – Database Application Development</li>
+                <li>IS 425 – Decision Support Systems</li>
+                <li>IS 436 – Structured Systems Analysis &amp; Design</li>
+                <li>IS 450 – Data Communications &amp; Networks</li>
+                <li>IS 451 – Network Design &amp; Management</li>
+                <li>Upper-Level IS Elective (3xx/4xx)</li>
+              </ul>
+            </article>
+
+            <article class="panel">
+              <div class="cardTitle">ELECTIVES</div>
+              <div class="rule"></div>
+              <p>You will customize your degree with upper-level IS electives. Examples include:</p>
+              <ul>
+                <li>IS 247 – Computer Programming II</li>
+                <li>IS 296 – Foundations of Data Science</li>
+                <li>IS 303 – Human-Centered Computing (HCI)</li>
+                <li>IS 427 – Artificial Intelligence</li>
+                <li>IS 470 – Software Testing</li>
+                <li>IS 202 – Systems Analysis Methods</li>
+                <li>IS 295 – Intermediate Business Applications</li>
+              </ul>
+            </article>
+          </section>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="view" role="tabpanel" hidden>
+        <div class="panel">
+          <div class="panel gold">CONTACT US HERE!</div>
+
+          <form class="grid5" action="#" method="post">
+            <div>
+              <span class="label">NAME</span>
+              <input name="name" type="text" placeholder="Enter your name" required />
+            </div>
+            <div>
+              <span class="label">EMAIL</span>
+              <input name="email" type="email" placeholder="name@umbc.edu" required />
+            </div>
+            <div>
+              <span class="label">PHONE NUMBER</span>
+              <input name="phone" type="tel" placeholder="(###) ###-####" />
+            </div>
+            <div>
+              <span class="label">STUDENT ID</span>
+              <input name="sid" type="text" placeholder="########" />
+            </div>
+            <div>
+              <span class="label">MESSAGE</span>
+              <textarea name="message" placeholder="Type your message" required></textarea>
+            </div>
+
+            <div style="grid-column:1/-1;text-align:right">
+              <button class="btn" type="submit">Send Message</button>
+            </div>
+          </form>
+
+          <div id="success" class="success" hidden>
+            Thanks! We received your message and will get back to you soon.
+          </div>
+
+          <div class="panel" style="margin-top:18px;text-align:center;font-weight:800">
+            IT DEPARTMENT: ITE BUILDING SUITE 404
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Prototype for UMBC IS site redesign — one-file tabbed version (gold/black)
+    </footer>
+  </div>
+
+  <!-- Tiny router (tabs) -->
+  <script>
+    (function(){
+      const views = Array.from(document.querySelectorAll('.view'));
+      const buttons = Array.from(document.querySelectorAll('nav button'));
+      const byId = id => document.getElementById(id);
+
+      function show(id){
+        // show view
+        views.forEach(v => v.hidden = (v.id !== id));
+        // update nav state
+        buttons.forEach(btn => {
+          const on = btn.dataset.target === id;
+          btn.setAttribute('aria-current', on ? 'page' : 'false');
+          btn.setAttribute('aria-selected', on ? 'true' : 'false');
+          btn.tabIndex = on ? 0 : -1;
+        });
+        // set hash without jumping
+        if(location.hash !== '#' + id){
+          history.replaceState(null, '', '#' + id);
+        }
+      }
+
+      // click handlers
+      buttons.forEach(btn => btn.addEventListener('click', () => show(btn.dataset.target)));
+
+      // keyboard (left/right to change tabs)
+      document.addEventListener('keydown', (e) => {
+        if(document.activeElement.closest('nav')){
+          if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
+            e.preventDefault();
+            const idx = buttons.indexOf(document.activeElement);
+            if(idx >= 0){
+              const next = e.key === 'ArrowRight' ? (idx+1) % buttons.length : (idx-1+buttons.length) % buttons.length;
+              buttons[next].focus();
+              buttons[next].click();
+            }
+          }
+        }
+      });
+
+      // hash routing (default to home)
+      const initial = (location.hash || '#home').slice(1);
+      const valid = views.some(v => v.id === initial) ? initial : 'home';
+      show(valid);
+
+      // simple contact form success (no backend)
+      const form = document.querySelector('#contact form');
+      const success = document.getElementById('success');
+      if(form){
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          success.hidden = false;
+          form.reset();
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
