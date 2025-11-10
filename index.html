@@ -18,7 +18,7 @@
     *{box-sizing:border-box}
     html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
     .wrap{max-width:1100px;margin:auto;padding:24px}
-    /* Header */
+
     header{display:grid;grid-template-columns:180px 1fr;gap:16px;align-items:center;margin-bottom:18px}
     .logo{border:1px solid var(--line);background:var(--umbc-gold);color:var(--umbc-black);border-radius:28px;padding:20px;text-align:center;font-weight:800;letter-spacing:.5px}
     nav{display:flex;gap:14px;justify-content:flex-end;flex-wrap:wrap}
@@ -32,7 +32,7 @@
     }
     nav button:focus{outline:3px solid #0002; outline-offset:2px}
 
-    /* Panels & layout */
+
     .panel{border:1px solid var(--line);background:#fff;border-radius:var(--radius);padding:22px;box-shadow:var(--shadow)}
     .panel.gold{background:var(--umbc-gold);color:var(--umbc-black);font-weight:800;text-align:center}
     .grid{display:grid;gap:22px}
@@ -41,17 +41,17 @@
     .grid3{display:grid;gap:22px}
     @media (min-width:900px){.grid3{grid-template-columns:1fr 1fr 1fr}}
 
-    /* Titles */
+
     h1,h2{margin:10px 0 18px;letter-spacing:.5px}
     h1{text-align:center;font-size:28px}
     h2{text-align:center;font-size:28px}
     .cardTitle{font-weight:800;color:#444;margin-bottom:8px}
     .rule{height:3px;background:#eee;border-radius:2px;margin:6px 0 12px}
 
-    /* Lists */
+
     ul{margin:0;padding-left:18px}
 
-    /* Contact form */
+ 
     .label{display:inline-block;border:1px solid var(--line);border-radius:14px;background:#fff;padding:6px 10px;font-weight:800;font-size:12px;margin-bottom:8px}
     .grid5{display:grid;gap:18px}
     @media(min-width:900px){.grid5{grid-template-columns:repeat(5,1fr)}}
@@ -60,17 +60,17 @@
     .btn{display:inline-block;border-radius:999px;background:var(--umbc-gold);color:var(--umbc-black);padding:12px 18px;border:1px solid var(--umbc-gold);font-weight:800;text-decoration:none;cursor:pointer}
     .success{margin-top:16px;border:1px solid #bde5bd;background:#f0fff0;border-radius:16px;padding:12px 14px;font-weight:700;color:#1f7a1f}
 
-    /* Views (tabs) */
+  
     .view[hidden]{display:none}
     main{min-height:60vh}
 
-    /* Footer */
+
     footer{margin-top:28px;padding:18px 0;border-top:1px solid var(--line);font-size:12px;color:var(--muted);text-align:center}
   </style>
 </head>
 <body>
   <div class="wrap">
-    <!-- Top bar -->
+
     <header>
       <div class="logo">UMBC LOGO</div>
       <nav aria-label="Primary">
@@ -81,9 +81,9 @@
       </nav>
     </header>
 
-    <!-- Views -->
+
     <main>
-      <!-- HOME -->
+    
       <section id="home" class="view" role="tabpanel">
         <div class="panel">
           <div class="grid grid-home">
@@ -106,7 +106,7 @@
         </div>
       </section>
 
-      <!-- ABOUT -->
+
       <section id="about" class="view" role="tabpanel" hidden>
         <div class="panel">
           <div class="grid grid-home">
@@ -118,7 +118,7 @@
         </div>
       </section>
 
-      <!-- PROGRAM -->
+
       <section id="program" class="view" role="tabpanel" hidden>
         <div class="panel">
           <h2>UMBC INFORMATION SYSTEMS AND TECHNOLOGY</h2>
@@ -163,7 +163,7 @@
         </div>
       </section>
 
-      <!-- CONTACT -->
+
       <section id="contact" class="view" role="tabpanel" hidden>
         <div class="panel">
           <div class="panel gold">CONTACT US HERE!</div>
@@ -211,7 +211,7 @@
     </footer>
   </div>
 
-  <!-- Tiny router (tabs) -->
+
   <script>
     (function(){
       const views = Array.from(document.querySelectorAll('.view'));
@@ -219,25 +219,24 @@
       const byId = id => document.getElementById(id);
 
       function show(id){
-        // show view
+
         views.forEach(v => v.hidden = (v.id !== id));
-        // update nav state
+
         buttons.forEach(btn => {
           const on = btn.dataset.target === id;
           btn.setAttribute('aria-current', on ? 'page' : 'false');
           btn.setAttribute('aria-selected', on ? 'true' : 'false');
           btn.tabIndex = on ? 0 : -1;
         });
-        // set hash without jumping
+   
         if(location.hash !== '#' + id){
           history.replaceState(null, '', '#' + id);
         }
       }
 
-      // click handlers
       buttons.forEach(btn => btn.addEventListener('click', () => show(btn.dataset.target)));
 
-      // keyboard (left/right to change tabs)
+ 
       document.addEventListener('keydown', (e) => {
         if(document.activeElement.closest('nav')){
           if(e.key === 'ArrowRight' || e.key === 'ArrowLeft'){
@@ -252,12 +251,11 @@
         }
       });
 
-      // hash routing (default to home)
+  
       const initial = (location.hash || '#home').slice(1);
       const valid = views.some(v => v.id === initial) ? initial : 'home';
       show(valid);
 
-      // simple contact form success (no backend)
       const form = document.querySelector('#contact form');
       const success = document.getElementById('success');
       if(form){
